@@ -1,0 +1,510 @@
+@import "tailwindcss";
+
+:root {
+  --bg-ivory: #FAF7F2;
+  --bg-ivory-card: #FFFFFF;
+  --bg-ivory-warm: #FFFDF9;
+  --border-ivory: #EFE8DD;
+  
+  /* Accessible High Contrast Palette Tokens */
+  --text-primary: #1C1917;
+  --text-secondary: #44403C;
+  --text-muted: #57534E;
+  
+  /* Cute Pastel Accents */
+  --accent-lavender: #8B5CF6;
+  --accent-lavender-light: #EDE9FE;
+  --accent-peach: #EA580C;
+  --accent-peach-light: #FFEDD5;
+  --accent-pink: #DB2777;
+  --accent-pink-light: #FCE7F3;
+  --accent-coral: #E11D48;
+  --accent-coral-light: #FFE4E6;
+  --accent-mint: #059669;
+  --accent-mint-light: #D1FAE5;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-ivory);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), "Plus Jakarta Sans", "Quicksand", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-ivory);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accessibility Focus Ring Styles */
+:focus-visible {
+  outline: 3px solid #7C3AED !important;
+  outline-offset: 3px !important;
+  border-radius: 6px;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: #1E1B4B;
+  color: #FFFFFF;
+  padding: 0.75rem 1.25rem;
+  z-index: 9999;
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Custom Soft Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.2deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(1.5deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(18deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes mascot-breath {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-7px) scale(1.015);
+  }
+}
+
+@keyframes mascot-eye-blink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+/* =========================================================================
+   3D Soft Clay Robot Mascot Animations
+   ========================================================================= */
+
+/* 1. IDLE: gentle float up and down with occasional slight head tilt */
+@keyframes robot-idle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
+  70% {
+    transform: translateY(-4px) rotate(1.2deg);
+  }
+}
+
+/* 2. WAVE: rhythmic friendly waving of the right arm */
+@keyframes robot-wave-arm {
+  0%, 100% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(75deg);
+  }
+}
+
+/* 3. DANCE: joyful bouncing dance with little hops and arm movement */
+@keyframes robot-dance-body {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-14px) rotate(-4deg) scale(1.03, 0.98);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg) scale(0.98, 1.02);
+  }
+  75% {
+    transform: translateY(-14px) rotate(4deg) scale(1.03, 0.98);
+  }
+}
+
+@keyframes robot-dance-arm-left {
+  0%, 100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(55deg);
+  }
+}
+
+@keyframes robot-dance-arm-right {
+  0%, 100% {
+    transform: rotate(55deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+}
+
+/* 4. SLEEP: slow peaceful breathing, head gently curled */
+@keyframes robot-sleep-body {
+  0%, 100% {
+    transform: translateY(3px) rotate(2deg) scale(0.99);
+  }
+  50% {
+    transform: translateY(8px) rotate(3.5deg) scale(0.97, 1.01);
+  }
+}
+
+@keyframes float-z-1 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(8px, -18px) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(16px, -36px) scale(1.15);
+  }
+}
+
+@keyframes float-z-2 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-10px, -22px) scale(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-18px, -44px) scale(1.2);
+  }
+}
+
+/* 5. THINK: curious expression, tilted gaze, gentle glowing or spinning aura */
+@keyframes robot-think-body {
+  0%, 100% {
+    transform: translateY(-4px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-7deg);
+  }
+}
+
+@keyframes robot-think-spin-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 6. CELEBRATE: joyous hops with squash & stretch and sparkly excitement */
+@keyframes robot-celebrate-jump {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  30% {
+    transform: translateY(-20px) scale(1.05, 0.95);
+  }
+  50% {
+    transform: translateY(-22px) scale(0.96, 1.06);
+  }
+  75% {
+    transform: translateY(0px) scale(1.06, 0.94);
+  }
+}
+
+/* 7. WAKING: cute morning stretch */
+@keyframes robot-waking-stretch {
+  0% {
+    transform: translateY(6px) scale(0.95);
+  }
+  50% {
+    transform: translateY(-12px) scale(0.92, 1.12);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* Subtle gloss shimmer across eyes */
+@keyframes gloss-shimmer {
+  0%, 100% {
+    opacity: 0.9;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(1px, -1px);
+  }
+}
+
+.animate-float {
+  animation: float 4.5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 5.5s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-twinkle-delay-1 {
+  animation: twinkle 3.2s ease-in-out infinite 0.8s;
+}
+
+.animate-twinkle-delay-2 {
+  animation: twinkle 2.8s ease-in-out infinite 1.5s;
+}
+
+.animate-glow {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+
+.animate-mascot {
+  animation: mascot-breath 4s ease-in-out infinite;
+}
+
+.animate-mascot-eyes {
+  animation: mascot-eye-blink 4.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Robot Mascot Classes */
+.animate-robot-idle {
+  animation: robot-idle-float 4s ease-in-out infinite;
+}
+
+.animate-robot-wave-arm {
+  animation: robot-wave-arm 0.7s ease-in-out infinite;
+  transform-origin: 20% 20%;
+}
+
+.animate-robot-dance {
+  animation: robot-dance-body 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: bottom center;
+}
+
+.animate-robot-dance-arm-l {
+  animation: robot-dance-arm-left 0.9s ease-in-out infinite;
+  transform-origin: 90% 20%;
+}
+
+.animate-robot-dance-arm-r {
+  animation: robot-dance-arm-right 0.9s ease-in-out infinite;
+  transform-origin: 10% 20%;
+}
+
+.animate-robot-sleep {
+  animation: robot-sleep-body 3.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-float-z-1 {
+  animation: float-z-1 2.4s ease-out infinite;
+}
+
+.animate-float-z-2 {
+  animation: float-z-2 2.8s ease-out infinite 1.1s;
+}
+
+.animate-robot-think {
+  animation: robot-think-body 3s ease-in-out infinite;
+}
+
+.animate-robot-think-ring {
+  animation: robot-think-spin-ring 8s linear infinite;
+}
+
+.animate-robot-celebrate {
+  animation: robot-celebrate-jump 0.8s cubic-bezier(0.3, 0, 0.4, 1.4) infinite;
+  transform-origin: bottom center;
+}
+
+.animate-robot-waking {
+  animation: robot-waking-stretch 1.2s ease-out forwards;
+  transform-origin: bottom center;
+}
+
+.animate-gloss {
+  animation: gloss-shimmer 3s ease-in-out infinite;
+}
+
+/* Reduced Motion Support - Automatic & Manual Toggle */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduced-motion *, 
+.reduced-motion ::before, 
+.reduced-motion ::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* =========================================================================
+   Accessibility Settings: Text Scaling Levels (up to 200%)
+   ========================================================================= */
+html.text-zoom-large {
+  font-size: 118%;
+}
+
+html.text-zoom-xlarge {
+  font-size: 135%;
+}
+
+html.text-zoom-xxlarge {
+  font-size: 155%;
+}
+
+/* =========================================================================
+   Accessibility Settings: High-Contrast Theme (WCAG AAA 7:1+)
+   ========================================================================= */
+html.theme-high-contrast {
+  --bg-ivory: #000000;
+  --bg-ivory-card: #0F172A;
+  --bg-ivory-warm: #020617;
+  --border-ivory: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --text-secondary: #F8FAFC;
+  --text-muted: #E2E8F0;
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.theme-high-contrast body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.theme-high-contrast div,
+html.theme-high-contrast section,
+html.theme-high-contrast main,
+html.theme-high-contrast aside,
+html.theme-high-contrast nav,
+html.theme-high-contrast header,
+html.theme-high-contrast footer {
+  border-color: #FFFFFF !important;
+}
+
+html.theme-high-contrast .bg-white {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+}
+
+html.theme-high-contrast .bg-\[\#FAF7F2\] {
+  background-color: #000000 !important;
+}
+
+html.theme-high-contrast .text-stone-900,
+html.theme-high-contrast .text-stone-800,
+html.theme-high-contrast .text-stone-700,
+html.theme-high-contrast .text-stone-600 {
+  color: #FFFFFF !important;
+}
+
+html.theme-high-contrast :focus-visible {
+  outline: 4px solid #FACC15 !important;
+  outline-offset: 4px !important;
+}
+
+/* =========================================================================
+   Bidirectional Support for RTL (Urdu)
+   ========================================================================= */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
